@@ -1,0 +1,15 @@
+﻿
+> orders-api@1.0.0 start
+> node src/server.js
+
+{"level":30,"time":1787803025293,"pid":17,"hostname":"71fc99fd76fd","service":"orders-api","msg":"startup.beginning","msg":"Starting application"}
+{"level":30,"time":1787803025295,"pid":17,"hostname":"71fc99fd76fd","msg":"db.connection.attempting","msg":"Attempting database connection"}
+{"level":30,"time":1787803025306,"pid":17,"hostname":"71fc99fd76fd","service":"orders-api","port":3000,"msg":"startup.complete","msg":"Application listening on port 3000"}
+{"level":50,"time":1787803025309,"pid":17,"hostname":"71fc99fd76fd","msg":"db.connection.failed","error":"connect ECONNREFUSED 172.21.0.2:5432","msg":"Database connection failed"}
+{"level":30,"time":1787803025309,"pid":17,"hostname":"71fc99fd76fd","msg":"db.connection.retrying","msg":"Retrying database connection"}
+{"level":30,"time":1787803077984,"pid":17,"hostname":"71fc99fd76fd","reqId":"7ed81bce-a767-4af7-9dc5-5653c63855d3","method":"GET","path":"/","msg":"root.endpoint.accessed","msg":"Health check endpoint accessed"}
+{"level":50,"time":1787803090374,"pid":17,"hostname":"71fc99fd76fd","reqId":"55acb1a5-889f-41f0-bbbc-3adaae0ade8c","method":"GET","path":"/simulate-error","msg":"error.simulated","statusCode":500,"msg":"Simulated error endpoint triggered"}
+{"level":30,"time":1787803214584,"pid":17,"hostname":"71fc99fd76fd","reqId":"e04e2b92-cb7d-42cb-90c8-f64bc36a285f","method":"POST","path":"/orders","msg":"orders.create.started","msg":"Creating new order"}
+{"level":30,"time":1787803214608,"pid":17,"hostname":"71fc99fd76fd","reqId":"e04e2b92-cb7d-42cb-90c8-f64bc36a285f","method":"POST","path":"/orders","msg":"orders.create.success","orderId":3,"msg":"Order created successfully"}
+{"level":30,"time":1787803222294,"pid":17,"hostname":"71fc99fd76fd","reqId":"30c27bbc-f423-401a-9c5f-3e93ca8452cc","method":"GET","path":"/orders","msg":"orders.list.started","msg":"Fetching orders list"}
+{"level":30,"time":1787803222296,"pid":17,"hostname":"71fc99fd76fd","reqId":"30c27bbc-f423-401a-9c5f-3e93ca8452cc","method":"GET","path":"/orders","msg":"orders.list.success","count":3,"msg":"Successfully fetched orders"}
