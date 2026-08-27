@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+const { logger } = require('./logger');
 
 const pool = new Pool({
   host: process.env.DB_HOST || 'localhost',
@@ -9,21 +10,27 @@ const pool = new Pool({
 });
 
 const connectDb = async () => {
-  console.log("connecting...");
+  logger.info({ msg: 'db.connection.attempting' }, 'Attempting database connection');
   try {
     await pool.query('SELECT NOW()');
-    console.log("connected");
+    logger.info({ msg: 'db.connection.success' }, 'Database connection successful');
   } catch (err) {
-    console.log("error");
-    console.log("retry");
+    logger.error({ msg: 'db.connection.failed', error: err.message }, 'Database connection failed');
+    logger.info({ msg: 'db.connection.retrying' }, 'Retrying database connection');
   }
 };
 
 const queryDb = async (text, params) => {
-  console.log("query...");
-  const res = await pool.query(text, params);
-  console.log("finished");
-  return res;
+  logger.debug({ msg: 'db.query.executing', query: text }, 'Executing database query');
+  try {
+    const res = await pool.query(text, params);
+    logger.debug({ msg: 'db.query.success', rows: res.rowCount }, 'Database query completed successfully');
+    return res;
+  } catch (err) {
+    logger.error({ msg: 'db.query.failed', error: err.message, query: text }, 'Database query failed');
+    throw err;
+  }
 };
 
 module.exports = { connectDb, queryDb, pool };
+
